@@ -3,13 +3,16 @@ package com.bridgelabz;
 public class EmpWageComputation {
 	static final int Is_Full_Time = 1;
 	static final int Is_Part_Time = 2;
+	static final int NO_OF_WORKING_DAYS = 20;
+	static int totalEmpWage = 0;
 	static int empRatePerHr = 20;
 	static int empHrs = 0;
 	static int empWage = 0;
+	static int totalEmpHrs = 0;
 
 	public static void main(String[] args) {
 		EmpWageComputation emp = new EmpWageComputation();
-		useSwitchCase(emp);
+		calculateMonthlyWages(emp);
 	}
 
 	/**
@@ -74,5 +77,32 @@ public class EmpWageComputation {
 		}
 		empWage = empHrs * empRatePerHr;
 		System.out.println("daily wage of an employee " + empWage);
+	}
+
+	/**
+	 * This method is calculating wages for month
+	 * 
+	 * @param emp
+	 */
+	private static void calculateMonthlyWages(EmpWageComputation emp) {
+		for (int day = 1; day < NO_OF_WORKING_DAYS; day++) {
+			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+			switch (empCheck) {
+			case Is_Full_Time: {
+				empHrs = 8;
+				break;
+			}
+			case Is_Part_Time: {
+				empHrs = 4;
+				break;
+			}
+			default:
+				empHrs = 0;
+			}
+			empWage = empHrs * empRatePerHr;
+			totalEmpWage += empWage;
+			System.out.println("daily wage of an employee" + empWage);
+		}
+		System.out.println("total wage of an employee" + totalEmpWage);
 	}
 }
