@@ -9,8 +9,7 @@ public class EmpWageComputation {
 
 	public static void main(String[] args) {
 		EmpWageComputation emp = new EmpWageComputation();
-		addPartTime(emp);
-		calculateDailyWage(emp);
+		useSwitchCase(emp);
 	}
 
 	/**
@@ -52,5 +51,28 @@ public class EmpWageComputation {
 		if (empCheck == Is_Part_Time)
 			empHrs = 4;
 		empWage = empHrs * empRatePerHr;
+	}
+
+	/**
+	 * This method is used to use switch cases
+	 * 
+	 * @param emp
+	 */
+	private static void useSwitchCase(EmpWageComputation emp) {
+		int empCheck = (int) Math.floor(Math.random() * 10) % 3;
+		switch (empCheck) {
+		case Is_Full_Time: {
+			empHrs = 8;
+			break;
+		}
+		case Is_Part_Time: {
+			empHrs = 4;
+			break;
+		}
+		default:
+			empHrs = 0;
+		}
+		empWage = empHrs * empRatePerHr;
+		System.out.println("daily wage of an employee" + empWage);
 	}
 }
