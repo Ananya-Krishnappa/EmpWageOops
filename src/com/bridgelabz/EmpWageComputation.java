@@ -14,7 +14,7 @@ public class EmpWageComputation {
 
 	public static void main(String[] args) {
 		EmpWageComputation emp = new EmpWageComputation();
-		checkCondition(emp);
+		empWageSwitchCase(emp);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class EmpWageComputation {
 	 * 
 	 * @param emp
 	 */
-	private static void useSwitchCase(EmpWageComputation emp) {
+	private static void empWageSwitchCase(EmpWageComputation emp) {
 		int empCheck = (int) Math.floor(Math.random() * 10) % 3;
 		switch (empCheck) {
 		case Is_Full_Time: {
