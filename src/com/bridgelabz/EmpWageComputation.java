@@ -73,6 +73,6 @@ public class EmpWageComputation {
 			empHrs = 0;
 		}
 		empWage = empHrs * empRatePerHr;
-		System.out.println("daily wage of an employee" + empWage);
+		System.out.println("daily wage of an employee " + empWage);
 	}
 }
