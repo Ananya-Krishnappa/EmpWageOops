@@ -3,109 +3,23 @@ package com.bridgelabz;
 public class EmpWageComputation {
 	static final int Is_Full_Time = 1;
 	static final int Is_Part_Time = 2;
-	static final int NO_OF_WORKING_DAYS = 20;
-	static final int MAX_HOURS_IN_MONTH = 100;
-	static int totalEmpWage = 0;
-	static int empRatePerHr = 20;
-	static int totalWorkingdays = 0;
-	static int empHrs = 0;
-	static int empWage = 0;
-	static int totalEmpHrs = 0;
+	private final String company;
+	private final int EMP_RATE_PER_HR;
+	private final int NO_WORKING_DAYS;
+	private final int MAX_HRS_PER_MONTH;
+
+	public EmpWageComputation(String company, int EMP_RATE_PER_HR, int NO_WORKING_DAYS, int MAX_HRS_PER_MONTH) {
+		this.company = company;
+		this.EMP_RATE_PER_HR = EMP_RATE_PER_HR;
+		this.NO_WORKING_DAYS = NO_WORKING_DAYS;
+		this.MAX_HRS_PER_MONTH = MAX_HRS_PER_MONTH;
+	}
 
 	public static void main(String[] args) {
-		EmpWageComputation emp = new EmpWageComputation();
-		empWageSwitchCase(emp);
-	}
-
-	/**
-	 * This method is checking if employee is present or not
-	 * 
-	 * @param emp
-	 * @return
-	 */
-	private static boolean isEmployeePresent(EmpWageComputation emp) {
-		double empCheck = Math.floor(Math.random() * 10) % 2;
-		if (empCheck == Is_Full_Time) {
-			System.out.println("employee is present");
-			calculateDailyWage(emp);
-		} else
-			System.out.println("employee is not present");
-		return false;
-	}
-
-	/**
-	 * This method is calculating daily wages
-	 * 
-	 * @param emp
-	 */
-	private static void calculateDailyWage(EmpWageComputation emp) {
-		double empCheck = Math.floor(Math.random() * 10) % 2;
-		if (empCheck == Is_Full_Time)
-			empHrs = 8;
-		empWage = empHrs * empRatePerHr;
-		System.out.println("daily wage of an employee " + empWage);
-	}
-
-	/**
-	 * This method is to add part time employee and calculating wage
-	 * 
-	 * @param emp
-	 */
-	private static void addPartTime(EmpWageComputation emp) {
-		double empCheck = Math.floor(Math.random() * 10) % 3;
-		if (empCheck == Is_Part_Time)
-			empHrs = 4;
-		empWage = empHrs * empRatePerHr;
-	}
-
-	/**
-	 * This method is used to use switch cases
-	 * 
-	 * @param emp
-	 */
-	private static void empWageSwitchCase(EmpWageComputation emp) {
-		int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-		switch (empCheck) {
-		case Is_Full_Time: {
-			empHrs = 8;
-			break;
-		}
-		case Is_Part_Time: {
-			empHrs = 4;
-			break;
-		}
-		default:
-			empHrs = 0;
-		}
-		empWage = empHrs * empRatePerHr;
-		System.out.println("daily wage of an employee " + empWage);
-	}
-
-	/**
-	 * This method is calculating wages for month
-	 * 
-	 * @param emp
-	 */
-	private static void calculateMonthlyWages(EmpWageComputation emp) {
-		for (int day = 1; day < NO_OF_WORKING_DAYS; day++) {
-			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-			switch (empCheck) {
-			case Is_Full_Time: {
-				empHrs = 8;
-				break;
-			}
-			case Is_Part_Time: {
-				empHrs = 4;
-				break;
-			}
-			default:
-				empHrs = 0;
-			}
-			empWage = empHrs * empRatePerHr;
-			totalEmpWage += empWage;
-			System.out.println("daily wage of an employee" + empWage);
-		}
-		System.out.println("total wage of an employee" + totalEmpWage);
+		EmpWageComputation emp = new EmpWageComputation("dmart", 20, 20, 100);
+		EmpWageComputation emp1 = new EmpWageComputation("kmart", 5, 15, 100);
+		calculateWage(emp);
+		calculateWage(emp1);
 	}
 
 	/**
@@ -114,10 +28,10 @@ public class EmpWageComputation {
 	 * 
 	 * @param emp
 	 */
-	private static void checkCondition(EmpWageComputation emp) {
-		while (totalEmpHrs <= MAX_HOURS_IN_MONTH && totalWorkingdays < NO_OF_WORKING_DAYS) {
-			int empHrs = 0;
-			totalWorkingdays++;
+	private static void calculateWage(EmpWageComputation emp) {
+		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+		while (totalEmpHrs <= emp.MAX_HRS_PER_MONTH && totalWorkingDays < emp.NO_WORKING_DAYS) {
+			totalWorkingDays++;
 			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
 			switch (empCheck) {
 			case Is_Full_Time: {
@@ -132,11 +46,9 @@ public class EmpWageComputation {
 				empHrs = 0;
 			}
 			totalEmpHrs += empHrs;
-			empWage = empHrs * empRatePerHr;
-			totalEmpWage += empWage;
-
-			System.out.println("daily wage of an employee" + empWage);
+			System.out.println("Day# :" + totalWorkingDays + " Emp Hr " + empHrs);
 		}
-		System.out.println("total wage of an employee" + totalEmpWage);
+		int totalEmpWage = totalEmpHrs * emp.EMP_RATE_PER_HR;
+		System.out.println("Total emp wage for company :" + emp.company + " is " + totalEmpWage);
 	}
 }
