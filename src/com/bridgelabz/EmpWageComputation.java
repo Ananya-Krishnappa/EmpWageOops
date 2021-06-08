@@ -4,9 +4,10 @@ public class EmpWageComputation {
 	static final int Is_Full_Time = 1;
 	static final int Is_Part_Time = 2;
 	private final String company;
-	private final int EMP_RATE_PER_HR;
-	private final int NO_WORKING_DAYS;
-	private final int MAX_HRS_PER_MONTH;
+	private static int EMP_RATE_PER_HR;
+	private static int NO_WORKING_DAYS;
+	private static int MAX_HRS_PER_MONTH;
+	private static int totalEmpWage;
 
 	public EmpWageComputation(String company, int EMP_RATE_PER_HR, int NO_WORKING_DAYS, int MAX_HRS_PER_MONTH) {
 		this.company = company;
@@ -15,22 +16,15 @@ public class EmpWageComputation {
 		this.MAX_HRS_PER_MONTH = MAX_HRS_PER_MONTH;
 	}
 
-	public static void main(String[] args) {
-		EmpWageComputation emp = new EmpWageComputation("dmart", 20, 20, 100);
-		EmpWageComputation emp1 = new EmpWageComputation("kmart", 5, 15, 100);
-		calculateWage(emp);
-		calculateWage(emp1);
-	}
-
 	/**
 	 * This method is calculating wages till a condition of total working hours or
 	 * days is reached for a month
 	 * 
 	 * @param emp
 	 */
-	private static void calculateWage(EmpWageComputation emp) {
+	private static void calculateWage() {
 		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
-		while (totalEmpHrs <= emp.MAX_HRS_PER_MONTH && totalWorkingDays < emp.NO_WORKING_DAYS) {
+		while (totalEmpHrs <= MAX_HRS_PER_MONTH && totalWorkingDays < NO_WORKING_DAYS) {
 			totalWorkingDays++;
 			int empCheck = (int) Math.floor(Math.random() * 10) % 3;
 			switch (empCheck) {
@@ -48,7 +42,21 @@ public class EmpWageComputation {
 			totalEmpHrs += empHrs;
 			System.out.println("Day# :" + totalWorkingDays + " Emp Hr " + empHrs);
 		}
-		int totalEmpWage = totalEmpHrs * emp.EMP_RATE_PER_HR;
-		System.out.println("Total employee wage for company :" + emp.company + " is " + totalEmpWage);
+		totalEmpWage = totalEmpHrs * EMP_RATE_PER_HR;
 	}
+
+	public String toString() {
+		return "Total emp wage for company: " + company + " is: " + totalEmpWage;
+	}
+
+	public static void main(String[] args) {
+		EmpWageComputation dmart = new EmpWageComputation("dmart", 20, 20, 100);
+		EmpWageComputation kmart = new EmpWageComputation("kmart", 5, 15, 100);
+		dmart.calculateWage();
+		System.out.println(dmart);
+		kmart.calculateWage();
+		System.out.println(kmart);
+
+	}
+
 }
