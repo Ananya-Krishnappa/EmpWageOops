@@ -61,9 +61,7 @@ public class EmpWageBuilder implements ICompanyEmpWage {
 			CompanyEmpWage companyEmpWage = companyEmpWageList.get(i);
 			companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
 			System.out.println(companyEmpWage);
-
 		}
-
 	}
 
 	@Override
