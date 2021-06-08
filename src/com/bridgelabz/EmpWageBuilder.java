@@ -1,18 +1,19 @@
 package com.bridgelabz;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class EmpWageBuilder implements ICompanyEmpWage {
 	static final int IS_FULL_TIME = 1;
 	static final int IS_PART_TIME = 2;
 
-	private LinkedList<CompanyEmpWage> companyEmpWageList;
+	private List<CompanyEmpWage> companyEmpWageList;
 	private Map<String, CompanyEmpWage> companyEmpWageMap;
 
 	public EmpWageBuilder() {
-		companyEmpWageList = new LinkedList<>();
+		companyEmpWageList = new ArrayList<CompanyEmpWage>();
 		companyEmpWageMap = new HashMap<>();
 	}
 
