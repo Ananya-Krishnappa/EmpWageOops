@@ -51,7 +51,7 @@ public class EmpWageBuilder implements ICompanyEmpWage {
 				empHrs = 0;
 			}
 			totalEmpHrs += empHrs;
-			System.out.println("Day# :" + totalWorkingDays + " Emp Hr " + empHrs);
+			System.out.println("Day#:" + totalWorkingDays + " Emp Hr " + empHrs);
 		}
 		return totalEmpHrs * companyEmpWage.EMP_RATE_PER_HR;
 	}
